@@ -1,0 +1,14 @@
+@if (todos.length === 0) {
+    <p>No tasks yet.</p>
+}
+
+<button (click)="clearCompleted()">Clear Completed</button>
+
+@for (todo of todos; track todo.id){
+    <div>
+        <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)">
+        <span>{{todo.title}}</span>
+        <button (click)="deleteTodo(todo.id)">Delete</button>
+        <button (click)="editTodo(todo)">Edit</button>
+    </div>
+}

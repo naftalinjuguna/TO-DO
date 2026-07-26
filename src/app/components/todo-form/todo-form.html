@@ -1,0 +1,7 @@
+<form [formGroup]="todoForm" (ngSubmit)="addTodo()">
+    <input type="text" placeholder="Enter a task..." formControlName="title">
+
+    <button type="submit">
+        {{isEditing ? 'Update Task' : 'Add Task'}}
+    </button>
+</form>
