@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Todo } from '../../services/todo';
 import { TodoModel } from '../../models/todo-model';
 
@@ -16,7 +16,7 @@ export class TodoList {
     this.todos = this.todoService.getTodos();
   }
 
-  @output() edit = new EventEmitter<TodoModel>();
+  @Output() edit = new EventEmitter<TodoModel>();
 
   editTodo(todo: TodoModel) {
     this.edit.emit(todo);

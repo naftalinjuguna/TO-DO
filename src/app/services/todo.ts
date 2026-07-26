@@ -21,8 +21,11 @@ export class Todo {
   }
 
   deleteTodo(id: number): void {
-    this.todos = this.todos.filter((todo) => todo.id !== id);
-    this.saveTodos();
+    const index = this.todos.findIndex((todo) => todo.id === id);
+    if (index !== -1) {
+      this.todos.splice(index, 1);
+      this.saveTodos();
+    }
   }
 
   toggleTodo(id: number): void {
@@ -38,7 +41,7 @@ export class Todo {
     localStorage.setItem('todos', JSON.stringify(this.todos));
   }
 
-  private loadTodos(): void{
+  private loadTodos(): void {
     const storedTodos = localStorage.getItem('todos');
     if (storedTodos) {
       this.todos = JSON.parse(storedTodos);
@@ -46,12 +49,12 @@ export class Todo {
   }
 
   clearCompleted(): void {
-    this.todos = this.todos.filter(todo => !todo.completed);
+    this.todos = this.todos.filter((todo) => !todo.completed);
     this.saveTodos();
   }
 
-  updateTodo(updatedTodo: TodoModel): void{
-    const todo = this.todos.find(t => t.id === updatedTodo.id);
+  updateTodo(updatedTodo: TodoModel): void {
+    const todo = this.todos.find((t) => t.id === updatedTodo.id);
     if (todo) {
       todo.title = updatedTodo.title;
       todo.completed = updatedTodo.completed;

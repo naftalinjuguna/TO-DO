@@ -1,14 +1,20 @@
 @if (todos.length === 0) {
-    <p>No tasks yet.</p>
+<p>No tasks yet.</p>
 }
 
-<button (click)="clearCompleted()">Clear Completed</button>
+<button (click)="clearCompleted()" class="bg-red-400 p-2 text-white mt-4 rounded-lg">Clear Completed</button>
 
 @for (todo of todos; track todo.id){
-    <div>
+<div class="flex items-center justify-between border border-green-500 p-3 my-2 rounded-lg min-w-75">
+    <div class="flex space-x-2">
         <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)">
         <span>{{todo.title}}</span>
-        <button (click)="deleteTodo(todo.id)">Delete</button>
-        <button (click)="editTodo(todo)">Edit</button>
     </div>
+    <div class="flex space-x-2">
+        <button class="bg-amber-100 h-8 w-8 rounded-lg" (click)="deleteTodo(todo.id)">🗑️</button>
+        <button class="bg-amber-100 h-8 w-8 rounded-lg" (click)="editTodo(todo)">✏️</button>
+    </div>
+
+
+</div>
 }

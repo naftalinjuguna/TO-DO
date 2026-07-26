@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Todo } from '../../services/todo';
 import { TodoModel } from '../../models/todo-model';
@@ -23,7 +23,7 @@ export class TodoForm implements OnChanges {
     });
   }
 
-  @input() selectedTodo: TodoModel | null = null;
+  @Input() selectedTodo: TodoModel | null = null;
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedTodo'] && this.selectedTodo) {
       this.isEditing = true;
@@ -34,9 +34,7 @@ export class TodoForm implements OnChanges {
   }
 
   addTodo() {
-    if (this.todoForm.invalid) {
-      return;
-    }
+    if (this.todoForm.invalid) return;
 
     if (this.isEditing && this.selectedTodo) {
       this.todoService.updateTodo({
