@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Todo } from '../../services/todo';
 import { Category, Priority, TodoModel } from '../../models/todo-model';
 
@@ -21,12 +21,25 @@ export class TodoForm implements OnChanges {
     this.todoForm = this.fb.nonNullable.group({
       title: ['', Validators.required],
       description: [''],
-      dueDate: [new Date()],
-      dueTime: [''],
-      priority:['LOW' as Priority],
+      dueDate: [this.getToday()],
+      dueTime: [this.getCurrentTime()],
+      priority: ['LOW' as Priority],
       category: ['OTHER' as Category],
     });
   }
+
+  getToday(): string {
+    return new Date().toISOString().split('T')[0];
+  }
+
+  getCurrentTime(): string {
+  const now = new Date();
+
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+
+  return `${hours}:${minutes}`;
+}
 
   @Input() selectedTodo: TodoModel | null = null;
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,6 +60,7 @@ export class TodoForm implements OnChanges {
       this.todoService.updateTodo({
         id: this.selectedTodo.id,
         ...formData,
+        dueDate: new Date(formData.dueDate),
         completed: this.selectedTodo.completed,
       });
 
@@ -56,6 +70,7 @@ export class TodoForm implements OnChanges {
       const todo: TodoModel = {
         id: Date.now(),
         ...formData,
+        dueDate: new Date(formData.dueDate),
         completed: false,
       };
 
@@ -65,7 +80,7 @@ export class TodoForm implements OnChanges {
     this.todoForm.reset({
       title: '',
       description: '',
-      dueDate: new Date(),
+      dueDate: this.getToday(),
       dueTime: '',
       priority: 'LOW' as Priority,
       category: 'OTHER' as Category,

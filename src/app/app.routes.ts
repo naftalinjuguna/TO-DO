@@ -1,3 +1,10 @@
+import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
+import { TodoForm } from './components/todo-form/todo-form';
+import { Dashboard } from './components/dashboard/dashboard';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: Dashboard },
+  { path: 'form', component: TodoForm },
+];
