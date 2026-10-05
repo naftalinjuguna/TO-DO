@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
 import { Todo } from '../../services/todo';
 import { TodoModel } from '../../models/todo-model';
 
@@ -7,14 +7,21 @@ import { TodoModel } from '../../models/todo-model';
   selector: 'app-todo-list',
   imports: [CommonModule],
   templateUrl: './todo-list.html',
-  styleUrl: './todo-list.css',
 })
-export class TodoList {
-  todos: TodoModel[] = [];
+export class TodoList implements OnInit {
+  private todoService = inject(Todo);
 
-  constructor(private todoService: Todo) {
-    this.todos = this.todoService.getTodos();
+  constructor() {}
+
+  ngOnInit() {
+    this.getTodos();
   }
+
+  getTodos(): TodoModel[] {
+    return this.todoService.todos();
+  }
+
+  todos = signal(this.todoService.todos());
 
   @Output() edit = new EventEmitter<TodoModel>();
 

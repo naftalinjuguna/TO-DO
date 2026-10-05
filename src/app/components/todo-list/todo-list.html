@@ -1,10 +1,10 @@
-@if (todos.length === 0) {
+@if (todos().length === 0) {
 <p>No tasks yet.</p>
 }
 
 <button (click)="clearCompleted()" class="bg-red-400 p-2 text-white mt-4 rounded-lg">Clear Completed</button>
 
-@for (todo of todos; track todo.id){
+@for (todo of todos(); track todo.id){
 <div class="flex items-center justify-between border border-green-500 p-3 my-2 rounded-lg min-w-75">
     <div class="flex space-x-2">
         <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)">

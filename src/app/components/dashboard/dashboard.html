@@ -1,3 +1,44 @@
-<p>dashboard works!</p>
+<section class="bg-gray-100 h-screen">
 
-<app-todo-list></app-todo-list>
+    <div class="flex items-center justify-between bg-white w-full p-2">
+        <div class="flex items-center">
+            <img src="image.png" alt="Logo" class="h-10">
+            <h1 class="text-xl font-semibold text-blue-600">TaskFlow</h1>
+        </div>
+        <div class="bg-blue-300 h-10 w-10 rounded-full flex items-center justify-center text-white font-bold">
+            N
+        </div>
+    </div>
+
+    <div class="p-3 lg:6">
+
+        <div class="bg-white rounded-lg px-4 py-2 my-4">
+            <p class="text-gray-600 text-sm bg-blue-100 w-45 p-1 rounded-xl">
+                {{getToday() | date:'fullDate'}}
+            </p>
+            <h1 class="text-2xl font-medium mt-2">
+                @if (getCurrentTime() < '12:00:00' ) { Good morning, Naftali! } @else if (getCurrentTime() < '18:00:00'
+                    ) { Good afternoon, Naftali! } @else { Good evening, Naftali! } </h1>
+                    <p class="text-gray-600 text-sm">
+                        Let's make your day productive.
+                    </p>
+        </div>
+
+        <div class="flex justify-between mb-2">
+            <span>Today's Progress</span>
+
+            <span>
+                {{ getCompletedToday() }} / {{ getTotalToday() }}
+            </span>
+        </div>
+
+        <div class="w-full h-2 bg-gray-200 rounded-full">
+            <div class="h-2 bg-green-500 rounded-full transition-all" [style.width.%]="getTodaysProgress()"></div>
+        </div>
+
+        <p class="text-sm mt-1">
+            {{ getTodaysProgress() }}% completed
+        </p>
+    </div>
+    <app-todo-list></app-todo-list>
+</section>

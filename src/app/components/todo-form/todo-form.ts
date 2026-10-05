@@ -9,7 +9,6 @@ import { Category, Priority, TodoModel } from '../../models/todo-model';
   selector: 'app-todo-form',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './todo-form.html',
-  styleUrl: './todo-form.css',
 })
 export class TodoForm implements OnChanges {
   todoForm;
@@ -24,7 +23,7 @@ export class TodoForm implements OnChanges {
       dueDate: [this.getToday()],
       dueTime: [this.getCurrentTime()],
       priority: ['LOW' as Priority],
-      category: ['OTHER' as Category],
+      category: ['Development' as Category],
     });
   }
 
@@ -33,13 +32,13 @@ export class TodoForm implements OnChanges {
   }
 
   getCurrentTime(): string {
-  const now = new Date();
+    const now = new Date();
 
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
 
-  return `${hours}:${minutes}`;
-}
+    return `${hours}:${minutes}`;
+  }
 
   @Input() selectedTodo: TodoModel | null = null;
   ngOnChanges(changes: SimpleChanges): void {
@@ -81,7 +80,7 @@ export class TodoForm implements OnChanges {
       title: '',
       description: '',
       dueDate: this.getToday(),
-      dueTime: '',
+      dueTime: this.getCurrentTime(),
       priority: 'LOW' as Priority,
       category: 'OTHER' as Category,
     });

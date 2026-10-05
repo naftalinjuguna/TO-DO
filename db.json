@@ -1,0 +1,35 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "title": "Learn Angular",
+      "description": "Study Angular services",
+      "dueDate": "2026-10-05",
+      "dueTime": "18:00",
+      "priority": "HIGH",
+      "category": "Development",
+      "completed": false
+    },
+    {
+      "id": "lngawiqVOl0",
+      "title": "Create db.json",
+      "description": "Create a test db.json for TaskFlow",
+      "dueDate": "2026-10-04T00:00:00.000Z",
+      "dueTime": "22:26",
+      "priority": "LOW",
+      "category": "Development",
+      "completed": false
+    },
+    {
+      "id": "WfJusVVl2lg",
+      "title": "Handle Task flow",
+      "description": "There is an error in TaskFlow ...",
+      "dueDate": "2026-10-05T00:00:00.000Z",
+      "dueTime": "10:50",
+      "priority": "LOW",
+      "category": "Development",
+      "completed": false
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
