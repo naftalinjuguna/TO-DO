@@ -24,21 +24,27 @@
                     </p>
         </div>
 
-        <div class="flex justify-between mb-2">
-            <span>Today's Progress</span>
+        <div class="bg-white p-2 rounded-lg shadow-md">
 
-            <span>
-                {{ getCompletedToday() }} / {{ getTotalToday() }}
-            </span>
+            <div class="flex justify-between mb-2">
+                <span>Today's Progress</span>
+
+                <span>
+                    {{ totalCompleted() }} / {{ totalTodos() }}
+                </span>
+            </div>
+
+            <div class="w-full h-2 bg-gray-200 rounded-full">
+                <div class="h-2 bg-blue-500 rounded-full transition-all" [style.width.%]="todaysProgress"></div>
+            </div>
+
+            <p class="text-sm mt-1">
+                {{ todaysProgress }}% completed
+            </p>
         </div>
 
-        <div class="w-full h-2 bg-gray-200 rounded-full">
-            <div class="h-2 bg-green-500 rounded-full transition-all" [style.width.%]="getTodaysProgress()"></div>
-        </div>
-
-        <p class="text-sm mt-1">
-            {{ getTodaysProgress() }}% completed
-        </p>
+        <app-summary-cards [total]="totalTodos()" [active]="activeTodos()" [completed]="totalCompleted()"
+            [overdue]="overdueTodos()"></app-summary-cards>
+        <app-todo-list></app-todo-list>
     </div>
-    <app-todo-list></app-todo-list>
 </section>

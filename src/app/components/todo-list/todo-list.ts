@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, OnInit, Output, signal } from '@angular/core';
 import { Todo } from '../../services/todo';
 import { TodoModel } from '../../models/todo-model';
+import { Main } from '../../services/main';
 
 @Component({
   selector: 'app-todo-list',
@@ -9,6 +10,7 @@ import { TodoModel } from '../../models/todo-model';
   templateUrl: './todo-list.html',
 })
 export class TodoList implements OnInit {
+  private mainService = inject(Main);
   private todoService = inject(Todo);
 
   constructor() {}
@@ -18,10 +20,18 @@ export class TodoList implements OnInit {
   }
 
   getTodos(): TodoModel[] {
-    return this.todoService.todos();
+    this.mainService.getTodos().subscribe({
+      next: (todo) => {
+        this.todos.set(todo);
+      },
+      error: (error) => {
+        console.error('Failed to load Todos!', error);
+      },
+    });
+    return this.todos();
   }
 
-  todos = signal(this.todoService.todos());
+  todos = signal<TodoModel[]>([]);
 
   @Output() edit = new EventEmitter<TodoModel>();
 

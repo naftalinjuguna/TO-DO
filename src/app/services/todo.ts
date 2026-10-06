@@ -10,25 +10,24 @@ import { Main } from './main';
 export class Todo {
   private mainService = inject(Main);
 
-  todos = signal(<TodoModel[]>[]);
+  todos = signal<TodoModel[]>([]);
 
   constructor() {}
 
   ngOninit(): void {
-    this.loadTodos();
+    this.getTodos();
   }
 
-  loadTodos(): TodoModel[] {
+  getTodos() {
     this.mainService.getTodos().subscribe({
-      next: (todos) => {
-        this.todos.set(todos);
-        console.log('Todos loaded:', todos);
+      next: (todo) => {
+        this.todos.set(todo);
+        console.log('Todos loaded:', todo);
       },
       error: (error) => {
         console.error('Error loading todos:', error);
-      }
+      },
     });
-    return this.todos();
   }
 
   updateTodo(todo: TodoModel): void {

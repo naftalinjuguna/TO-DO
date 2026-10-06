@@ -41,11 +41,17 @@ export class TodoForm implements OnChanges {
   }
 
   @Input() selectedTodo: TodoModel | null = null;
+  
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedTodo'] && this.selectedTodo) {
       this.isEditing = true;
       this.todoForm.patchValue({
         title: this.selectedTodo.title,
+        description: this.selectedTodo.description,
+        dueDate: this.selectedTodo.dueDate.toISOString().split('T')[0],
+        dueTime: this.selectedTodo.dueTime,
+        priority: this.selectedTodo.priority,
+        category: this.selectedTodo.category,
       });
     }
   }

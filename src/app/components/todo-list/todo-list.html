@@ -1,20 +1,23 @@
-@if (todos().length === 0) {
-<p>No tasks yet.</p>
-}
-
-<button (click)="clearCompleted()" class="bg-red-400 p-2 text-white mt-4 rounded-lg">Clear Completed</button>
-
-@for (todo of todos(); track todo.id){
-<div class="flex items-center justify-between border border-green-500 p-3 my-2 rounded-lg min-w-75">
-    <div class="flex space-x-2">
-        <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)">
-        <span>{{todo.title}}</span>
+<section class="p-2 bg-white rounded-lg h-full">
+    @if (todos().length === 0) {
+    <p>No tasks yet.</p>
+    }
+    
+    <button (click)="clearCompleted()" class="bg-red-400 p-2 text-white mt-4 rounded-lg">Clear Completed</button>
+    
+    @for (todo of todos(); track todo.id){
+    <div class="flex items-center justify-between border border-blue-500 p-3 my-2 rounded-lg min-w-75">
+        <div class="flex space-x-2">
+            <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)">
+            <span>{{todo.title}}</span>
+        </div>
+        <div class="flex space-x-2">
+            <button class="bg-blue-100 h-8 w-8 rounded-lg" (click)="deleteTodo(todo.id)">🗑️</button>
+            <button class="bg-blue-100 h-8 w-8 rounded-lg" (click)="editTodo(todo)">✏️</button>
+        </div>
+    
+    
     </div>
-    <div class="flex space-x-2">
-        <button class="bg-amber-100 h-8 w-8 rounded-lg" (click)="deleteTodo(todo.id)">🗑️</button>
-        <button class="bg-amber-100 h-8 w-8 rounded-lg" (click)="editTodo(todo)">✏️</button>
-    </div>
+    }
 
-
-</div>
-}
+</section>
