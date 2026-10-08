@@ -1,19 +1,11 @@
 <section class="bg-gray-100 h-screen">
 
-    <div class="flex items-center justify-between bg-white w-full p-2">
-        <div class="flex items-center">
-            <img src="image.png" alt="Logo" class="h-10">
-            <h1 class="text-xl font-semibold text-blue-600">TaskFlow</h1>
-        </div>
-        <div class="bg-blue-300 h-10 w-10 rounded-full flex items-center justify-center text-white font-bold">
-            N
-        </div>
-    </div>
+    <app-header></app-header>
 
     <div class="p-3 lg:6">
 
         <div class="bg-white rounded-lg px-4 py-2 my-4">
-            <p class="text-gray-600 text-sm bg-blue-100 w-45 p-1 rounded-xl">
+            <p class="text-gray-600 text-sm bg-blue-100 w-50 p-1 rounded-xl">
                 {{getToday() | date:'fullDate'}}
             </p>
             <h1 class="text-2xl font-medium mt-2">
@@ -30,7 +22,7 @@
                 <span>Today's Progress</span>
 
                 <span>
-                    {{ totalCompleted() }} / {{ totalTodos() }}
+                    {{ totalCompleted }} / {{ totalTodos }}
                 </span>
             </div>
 
@@ -43,8 +35,40 @@
             </p>
         </div>
 
-        <app-summary-cards [total]="totalTodos()" [active]="activeTodos()" [completed]="totalCompleted()"
+        <app-summary-cards [total]="totalTodos" [active]="activeTodos()" [completed]="totalCompleted"
             [overdue]="overdueTodos()"></app-summary-cards>
-        <app-todo-list></app-todo-list>
+
+        @if (isModalOpen) {
+        <div (click)="closeModal()" class="fixed inset-0 z-50 bg-black/50 p-4 flex items-center justify-center ">
+            <app-todo-form></app-todo-form>
+        </div>
+        }
+
+        <div class="bg-white rounded-lg p-2">
+            <div class="p-3 flex items-center justify-between">
+                <button (click)="openModal()" class="bg-blue-500 rounded-xl text-white p-2">
+                    + Add Task
+                </button>
+
+                <button routerLink="/list" class="p-2 bg-blue-100 text-blue-600 rounded-xl">
+                    View all →
+                </button>
+
+            </div>
+
+            <div>
+                @for (todo of recentTodos(); track todo.id) {
+                    <div>
+                        <h2>
+                            {{todo.title}}
+                        </h2>
+                    </div>
+                } @empty {
+                    <div class="bg-blue-100 p-4 rounded-xl text-gray-500">
+                        No recent activity
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 </section>

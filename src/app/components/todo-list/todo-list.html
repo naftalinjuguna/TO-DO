@@ -1,23 +1,51 @@
-<section class="p-2 bg-white rounded-lg h-full">
-    @if (todos().length === 0) {
-    <p>No tasks yet.</p>
-    }
-    
-    <button (click)="clearCompleted()" class="bg-red-400 p-2 text-white mt-4 rounded-lg">Clear Completed</button>
-    
-    @for (todo of todos(); track todo.id){
-    <div class="flex items-center justify-between border border-blue-500 p-3 my-2 rounded-lg min-w-75">
-        <div class="flex space-x-2">
-            <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)">
-            <span>{{todo.title}}</span>
+<section class="bg-gray-100 h-screen">
+
+
+    <app-header></app-header>
+
+
+    <div class="p-2">
+
+        <div class="bg-white rounded-lg px-4 py-2 my-4">
+            <div>
+                <p class="text-gray-600 text-sm bg-blue-100 w-50 p-1 rounded-xl">
+                    {{getToday() | date:'fullDate'}}
+                </p>
+                <h1 class="text-2xl font-medium mt-2">
+                    @if (getCurrentTime() < '12:00:00' ) { Good morning, Naftali! } @else if (getCurrentTime() < '18:00:00'
+                        ) { Good afternoon, Naftali! } @else { Good evening, Naftali! } </h1>
+                        <p class="text-gray-600 text-sm">
+                            Here's what has been happening.
+                        </p>
+
+            </div>
+
+            <button routerLink="/dashboard" class="bg-blue-100 text-blue-600 my-2 font-medium p-2 rounded-xl">
+             ← To Dasboard
+            </button>
         </div>
-        <div class="flex space-x-2">
-            <button class="bg-blue-100 h-8 w-8 rounded-lg" (click)="deleteTodo(todo.id)">🗑️</button>
-            <button class="bg-blue-100 h-8 w-8 rounded-lg" (click)="editTodo(todo)">✏️</button>
+
+
+        @if (todos().length === 0) {
+        <p>No tasks yet.</p>
+        }
+
+        @for (todo of todos(); track todo.id){
+        <div class="flex items-center justify-between bg-white border border-blue-500 p-3 my-2 rounded-lg min-w-75">
+            <div class="flex space-x-2">
+                <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo.id)">
+                <span>{{todo.title}}</span>
+            </div>
+            <div class="flex space-x-2">
+                <button class="bg-blue-100 h-8 w-8 rounded-lg" (click)="deleteTodo(todo.id)">🗑️</button>
+                <button class="bg-blue-100 h-8 w-8 rounded-lg" (click)="editTodo(todo)">✏️</button>
+            </div>
+
+
         </div>
-    
-    
+        }
+
     </div>
-    }
+
 
 </section>

@@ -1,60 +1,58 @@
-<div class="flex flex-col bg-gray-50 items-center justify-center min-h-screen">
-    <div class="border border-blue-400 p-4 rounded-2xl min-w-80 bg-white shadow-md">
-        <h1 class="font-bold text-2xl text-center my-2">
-            Create new Task
-        </h1>
-        <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="flex flex-col space-y-2">
+<div class="border border-blue-400 p-4 rounded-2xl min-w-80 bg-white shadow-md">
+    <h1 class="font-bold text-2xl text-center my-2">
+        Create new Task
+    </h1>
+    <form [formGroup]="todoForm" (ngSubmit)="addTodo()" class="flex flex-col space-y-2">
 
+        <div class="flex flex-col">
+            <label for="title" class="font-medium">Task Title:</label>
+            <input id="title" formControlName="title" class="p-2 bg-blue-50 rounded-xl">
+        </div>
+
+        <div class="flex flex-col">
+            <label for="description" class="font-medium">Task Description:</label>
+            <textarea id="description" formControlName="description"
+                class="p-2 w-full bg-blue-50 rounded-xl"></textarea>
+        </div>
+
+        <div>
             <div class="flex flex-col">
-                <label for="title" class="font-medium">Task Title:</label>
-                <input id="title" formControlName="title" class="p-2 bg-blue-50 rounded-xl">
+                <label for="dueDate" class="font-medium">Due Date:</label>
+                <input id="dueDate" type="date" formControlName="dueDate" class="p-2 bg-blue-50">
             </div>
-
             <div class="flex flex-col">
-                <label for="description" class="font-medium">Task Description:</label>
-                <textarea id="description" formControlName="description"
-                    class="p-2 w-full bg-blue-50 rounded-xl"></textarea>
+                <label for="dueTime" class="font-medium">Due Time:</label>
+                <input id="dueTime" type="time" formControlName="dueTime" class="p-2 bg-blue-50">
             </div>
+        </div>
 
-            <div>
-                <div class="flex flex-col">
-                    <label for="dueDate" class="font-medium">Due Date:</label>
-                    <input id="dueDate" type="date" formControlName="dueDate" class="p-2 bg-blue-50">
-                </div>
-                <div class="flex flex-col">
-                    <label for="dueTime" class="font-medium">Due Time:</label>
-                    <input id="dueTime" type="time" formControlName="dueTime" class="p-2 bg-blue-50">
-                </div>
-            </div>
+        <div>
+            <label for="priority" class="font-medium mr-2">Priority:</label>
+            <select id="priority" formControlName="priority" class="p-2 bg-blue-50 rounded-xl">
+                <option value="LOW">Low</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
+            </select>
+        </div>
 
-            <div>
-                <label for="priority" class="font-medium mr-2">Priority:</label>
-                <select id="priority" formControlName="priority" class="p-2 bg-blue-50 rounded-xl">
-                    <option value="LOW">Low</option>
-                    <option value="MEDIUM">Medium</option>
-                    <option value="HIGH">High</option>
-                </select>
-            </div>
-
-            <div>
-                <label for="category" class="font-medium mr-2">Category:</label>
-                <select id="category" formControlName="category" class="p-2 bg-blue-50 rounded-xl">
-                    <option value="Development">Development</option>
-                    <option value="School">School</option>
-                    <option value="Personal">Personal</option>
-                    <option value="Finance">Finance</option>
-                    <option value="Health">Health</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <div class="grid grid-cols-2 p-2 mt-4 bg-blue-50 rounded-lg">
-                <button class="bg-white p-2 rounded-lg">
-                    Cancel
-                </button>
-                <button type="submit" class="bg-blue-500 p-2 text-white ml-4 rounded-lg">
-                    {{isEditing ? 'Update Task' : 'Add Task'}}
-                </button>
-            </div>
-        </form>
-    </div>
+        <div>
+            <label for="category" class="font-medium mr-2">Category:</label>
+            <select id="category" formControlName="category" class="p-2 bg-blue-50 rounded-xl">
+                <option value="Development">Development</option>
+                <option value="School">School</option>
+                <option value="Personal">Personal</option>
+                <option value="Finance">Finance</option>
+                <option value="Health">Health</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="grid grid-cols-2 p-2 mt-4 bg-blue-50 rounded-lg">
+            <button class="bg-white p-2 rounded-lg">
+                Cancel
+            </button>
+            <button type="submit" class="bg-blue-500 p-2 text-white ml-4 rounded-lg">
+                {{isEditing ? 'Update Task' : 'Add Task'}}
+            </button>
+        </div>
+    </form>
 </div>

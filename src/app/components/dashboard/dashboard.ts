@@ -5,10 +5,13 @@ import { Todo } from '../../services/todo';
 import { SummaryCards } from '../summary-cards/summary-cards';
 import { TodoModel } from '../../models/todo-model';
 import { Main } from '../../services/main';
+import { RouterLink } from '@angular/router';
+import { TodoForm } from '../todo-form/todo-form';
+import { Header } from '../header/header';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [TodoList, DatePipe, SummaryCards],
+  imports: [TodoList, DatePipe, SummaryCards, RouterLink, TodoForm, Header],
   templateUrl: './dashboard.html',
 })
 export class Dashboard {
@@ -18,6 +21,7 @@ export class Dashboard {
 
   todos = signal<TodoModel[]>([]);
 
+  isModalOpen = false;
   isEditting = false;
   selectedTodo: TodoModel | null = null;
 
@@ -140,23 +144,15 @@ export class Dashboard {
     return new Date().toLocaleTimeString();
   }
 
-  // getTotalTodos(): number {
-  //   return this.todos().length;
-  // }
+  openModal() {
+    this.isModalOpen = true;
+  }
+  
+  closeModal() {
+    this.isModalOpen = false;
+  }
 
-  // getTotalToday(): number {
-  //   return this.todoService.totalToday;
-  // }
+  recentTodos = signal<TodoModel[]>(this.todaysTodos);
 
-  // getCompletedToday(): number {
-  //   return this.todoService.completedToday;
-  // }
-
-  // getRemainingToday(): number {
-  //   return this.todoService.remainingToday;
-  // }
-  // getTodaysProgress(): number {
-  //   return this.todoService.todaysProgress;
-  // }
 
 }

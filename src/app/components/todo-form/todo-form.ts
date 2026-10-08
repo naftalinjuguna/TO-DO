@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, inject, input, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Todo } from '../../services/todo';
 import { Category, Priority, TodoModel } from '../../models/todo-model';
@@ -12,7 +12,6 @@ import { Category, Priority, TodoModel } from '../../models/todo-model';
 })
 export class TodoForm implements OnChanges {
   todoForm;
-  isEditing = false;
 
   private fb: FormBuilder = inject(FormBuilder);
 
@@ -41,7 +40,8 @@ export class TodoForm implements OnChanges {
   }
 
   @Input() selectedTodo: TodoModel | null = null;
-  
+  @Input() isEditing: boolean = false; 
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedTodo'] && this.selectedTodo) {
       this.isEditing = true;
