@@ -29,6 +29,56 @@
       "priority": "LOW",
       "category": "Development",
       "completed": true
+    },
+    {
+      "id": "ss7oAInSP-E",
+      "title": "MyTasks Page",
+      "description": "Create a page to display all tasks",
+      "dueDate": "2026-10-08T00:00:00.000Z",
+      "dueTime": "22:30",
+      "priority": "HIGH",
+      "category": "Development",
+      "completed": false
+    },
+    {
+      "id": "4EcKK1JYj9k",
+      "title": "Filter Tasks",
+      "description": "Add filtering method to filter tasks according to priority, category and later date",
+      "dueDate": "2026-10-08T00:00:00.000Z",
+      "dueTime": "14:00",
+      "priority": "HIGH",
+      "category": "Development",
+      "completed": false
+    },
+    {
+      "id": "n76XVLXcgac",
+      "title": "Start Campus budet",
+      "description": "Bootstrap a new project to help student manage budget",
+      "dueDate": "2026-10-10T00:00:00.000Z",
+      "dueTime": "09:26",
+      "priority": "HIGH",
+      "category": "Development",
+      "completed": false
+    },
+    {
+      "id": "XaIb5s7tw_o",
+      "title": "Learn Angular Auth",
+      "description": "Explore how angular can be used to handle authentication.",
+      "dueDate": "2026-10-08T00:00:00.000Z",
+      "dueTime": "21:59",
+      "priority": "LOW",
+      "category": "Development",
+      "completed": false
+    },
+    {
+      "id": "C67NdJdzRqU",
+      "title": "Create object user",
+      "description": "object users to handle authentiction",
+      "dueDate": "2026-10-08T00:00:00.000Z",
+      "dueTime": "15:10",
+      "priority": "MEDIUM",
+      "category": "Development",
+      "completed": false
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

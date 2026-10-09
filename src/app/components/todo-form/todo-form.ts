@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, input, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, input, Input, OnChanges, output, SimpleChanges } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Todo } from '../../services/todo';
 import { Category, Priority, TodoModel } from '../../models/todo-model';
+import { LucideX } from '@lucide/angular';
 
 @Component({
   standalone: true,
   selector: 'app-todo-form',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, LucideX],
   templateUrl: './todo-form.html',
 })
 export class TodoForm implements OnChanges {
@@ -41,6 +42,12 @@ export class TodoForm implements OnChanges {
 
   @Input() selectedTodo: TodoModel | null = null;
   @Input() isEditing: boolean = false; 
+
+  closeModal = output<void>();
+
+  close() {
+    this.closeModal.emit();
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedTodo'] && this.selectedTodo) {
@@ -90,5 +97,7 @@ export class TodoForm implements OnChanges {
       priority: 'LOW' as Priority,
       category: 'OTHER' as Category,
     });
+
+    this.close();
   }
 }

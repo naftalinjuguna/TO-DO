@@ -131,7 +131,7 @@ export class Dashboard {
   get todaysProgress(): number {
     if (this.totalToday === 0) return 0;
 
-    return Math.round((this.totalTodos / this.totalCompleted) * 100);
+    return Math.round((this.totalCompleted / this.totalTodos) * 100);
   }
 
 

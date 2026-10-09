@@ -1,28 +1,50 @@
-<section class="bg-gray-100 h-screen">
+<section class="bg-gray-100 min-h-screen">
 
 
     <app-header></app-header>
 
 
-    <div class="p-2">
+    <div class="p-2 max-w-7xl my-0 mx-auto">
 
-        <div class="bg-white rounded-lg px-4 py-2 my-4">
+        <div class="bg-white rounded-lg px-4 py-2 my-4 lg:flex items-center justify-between">
             <div>
                 <p class="text-gray-600 text-sm bg-blue-100 w-50 p-1 rounded-xl">
                     {{getToday() | date:'fullDate'}}
                 </p>
                 <h1 class="text-2xl font-medium mt-2">
-                    @if (getCurrentTime() < '12:00:00' ) { Good morning, Naftali! } @else if (getCurrentTime() < '18:00:00'
-                        ) { Good afternoon, Naftali! } @else { Good evening, Naftali! } </h1>
+                    @if (getCurrentTime() < '12:00:00' ) { Good morning, Naftali! } @else if (getCurrentTime()
+                        < '18:00:00' ) { Good afternoon, Naftali! } @else { Good evening, Naftali! } </h1>
                         <p class="text-gray-600 text-sm">
                             Here's what has been happening.
                         </p>
 
             </div>
+            <div class="space-x-3">
+                <button class="p-2 bg-blue-600 text-white rounded-xl">
+                    + Add Task
+                </button>
 
-            <button routerLink="/dashboard" class="bg-blue-100 text-blue-600 my-2 font-medium p-2 rounded-xl">
-             ← To Dasboard
-            </button>
+                <button routerLink="/dashboard" class="bg-blue-100 text-blue-600 my-2 font-medium p-2 rounded-xl">
+                    ← To Dasboard
+                </button>
+            </div>
+        </div>
+
+        <div class="py-2 px-3 bg-white rounded-lg shadow-xl my-2 flex items-center justify-around">
+            <button class="py-2 px-3 bg-blue-500 text-white rounded-xl">All</button>
+            <select id="priority" class="bg-blue-100 px-3 py-2 rounded-lg">
+                <option value="HIGH">High</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="LOW">Low</option>
+            </select>
+            <select id="category" class="bg-blue-100 py-2 px-3 rounded-lg">
+                <option value="Development">Development</option>
+                <option value="School">School</option>
+                <option value="Personal">Personal</option>
+                <option value="Finance">Finance</option>
+                <option value="Health">Health</option>
+                <option value="Other">Other</option>
+            </select>
         </div>
 
 
